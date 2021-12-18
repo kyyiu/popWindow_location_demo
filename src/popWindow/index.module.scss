@@ -1,0 +1,119 @@
+@mixin dialog-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+}
+
+@mixin nxe_flex($jc: center, $ai: center) {
+  display: flex;
+  justify-content: $jc;
+  align-items: $ai;
+}
+
+
+@keyframes slideBgUp {
+  form {
+    visibility: visible;
+    background: rgba(0, 0, 0, .1);
+  } 
+  to {
+    background: rgba(0, 0, 0, .7);
+  }
+}
+
+@keyframes slideBgDown {
+  form {
+    background: rgba(0, 0, 0, .7);
+  }
+  to {
+    visibility: hidden;
+    background: rgba(0, 0, 0, .1)
+  }
+}
+
+.mask {
+  @include dialog-mask;
+  animation: slideBgUp 0.2s linear  both;
+  z-index: 2000;
+}
+
+.mask_down {
+  @include dialog-mask;
+  animation: slideBgDown 0.2s linear both;
+}
+
+@keyframes slideContentUp {
+  from {
+    // max-height: 0;
+    transform: translate3d(0, 100%, 0);
+    
+  }
+  to {
+    // max-height: 2000px;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slideContentDown {
+  from {
+    // max-height: 2000px;
+    transform: translate3d(0, 0, 0);
+    
+  }
+  to {
+    // max-height: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+}
+
+.pop{
+  animation: slideContentUp 0.2s linear both;
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  border-radius: 24px 24px 0 0;
+  overflow: hidden;
+  z-index: 2000;
+  background-color: #fff;
+}
+
+.pop_down {
+  animation: slideContentDown 0.2s linear both;
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  border-radius: 24px 24px 0 0;
+  overflow: hidden;
+  z-index: 2000;
+  background-color: #fff;
+}
+
+.title {
+  flex: 1;
+  text-align: center;
+}
+
+.nxe_filter_title {
+  @include nxe_flex(space-between);
+  height: 126px;
+  padding-right: 32px;
+}
+
+.nxe_filter_title > Text {
+  width: 93px;
+}
+
+.nxe_filter_title > Text + Text {
+  color: #333;
+  font-weight: bold;
+  font-size: 36px;
+  white-space: nowrap;
+}
+
+.nxe_ft_x {
+  width: 28px; height: 28px;
+  padding: 25px;
+  padding-right: 0;
+}
